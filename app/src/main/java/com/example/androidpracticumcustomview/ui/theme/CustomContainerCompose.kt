@@ -33,7 +33,9 @@ fun CustomContainerCompose(
     val screenHeight = configuration.screenHeightDp
     val density = LocalDensity.current.density
 
-    val offsetDistanceY = (screenHeight / 2) * density
+    val offsetDistanceY = remember(screenHeight, density) {
+        (screenHeight / 2) * density
+    }
 
     val firstChildAlpha = remember { Animatable(0f) }
     val firstChildOffset = remember { Animatable(offsetDistanceY) }
@@ -43,16 +45,16 @@ fun CustomContainerCompose(
 
     LaunchedEffect(Unit) {
         launch {
-            firstChildAlpha.animateTo(1f, animationSpec = tween(durationMillis = 5000))
+            firstChildAlpha.animateTo(1f, animationSpec = tween(durationMillis = ANIMATION_DURATION_MILLIS))
         }
         launch {
-            firstChildOffset.animateTo(0f, animationSpec = tween(durationMillis = 5000))
+            firstChildOffset.animateTo(0f, animationSpec = tween(durationMillis = ANIMATION_DURATION_MILLIS))
         }
         launch {
-            secondChildAlpha.animateTo(1f, animationSpec = tween(durationMillis = 5000))
+            secondChildAlpha.animateTo(1f, animationSpec = tween(durationMillis = ANIMATION_DURATION_MILLIS))
         }
         launch {
-            secondChildOffset.animateTo(0f, animationSpec = tween(durationMillis = 5000))
+            secondChildOffset.animateTo(0f, animationSpec = tween(durationMillis = ANIMATION_DURATION_MILLIS))
         }
     }
 
@@ -84,3 +86,5 @@ fun CustomContainerCompose(
         }
     }
 }
+
+const val ANIMATION_DURATION_MILLIS = 5_000

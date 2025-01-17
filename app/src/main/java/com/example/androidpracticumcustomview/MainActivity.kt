@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.TypedValue
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -32,13 +33,13 @@ class MainActivity : ComponentActivity() {
 
         val firstView = TextView(this).apply {
             text = context.getString(R.string.first_child)
-            textSize = 24f
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, resources.getDimension(R.dimen.text_size))
             setTextColor(Color.BLACK)
         }
 
         val secondView = TextView(this).apply {
             text = context.getString(R.string.second_child)
-            textSize = 24f
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, resources.getDimension(R.dimen.text_size))
             setTextColor(Color.BLACK)
         }
 
